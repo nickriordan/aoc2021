@@ -1,5 +1,5 @@
 fun fileAsLines(fileName: String) =
-    object {}::class.java.getResourceAsStream(fileName)?.bufferedReader()?.lines()?.toList()
+    object {}::class.java.getResourceAsStream(fileName)?.bufferedReader()?.lines()?.iterator()?.asSequence()
         ?: throw Exception("Failed to load file $fileName")
 
 fun <T : Number> pairs(items: List<T>): List<Pair<T, T>> {
