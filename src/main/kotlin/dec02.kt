@@ -1,3 +1,3 @@
-fun dec02() = fileAsLines("dec02.txt").map { it.toInt() }.toList().let { data ->
-    Pair(data[0], data[1])
-}
+
+fun dec02part1() = loadStrings("dec02.txt").map(String::toInt)
+fun dec02part2() = loadStrings("dec02.txt").map(String::toInt)
