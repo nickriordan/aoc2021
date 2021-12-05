@@ -1,14 +1,13 @@
 data class Board(private val rows: List<List<Int?>>, val winningNumber: Int = -1) {
-    fun call(number: Int) =
-        if (winningNumber < 0) {
-            val updatedRows = rows.map { it.map { e -> if (e == number) null else e } }
-            val cols = updatedRows[0].indices.map { ix -> updatedRows.map { it[ix] } }
-            if (updatedRows.any { r -> r.all { it == null } } || cols.any { c -> c.all { it == null } }) {
-                Board(updatedRows, number)
-            } else
-                Board(updatedRows)
-        } else
-            this
+    private fun rowWin(rows: List<List<Int?>>) = rows.any { r -> r.all { it == null } }
+    private fun colWin(rows: List<List<Int?>>) = rows[0].indices.map { ix -> rows.map { it[ix] } }.let { cols ->
+        cols.any { c -> c.all { it == null } }
+    }
+
+    fun call(number: Int) = if (isWon()) this else
+        rows.map { it.map { e -> if (e == number) null else e } }.let { updatedRows ->
+            if (rowWin(updatedRows) || colWin(updatedRows)) Board(updatedRows, number) else Board(updatedRows)
+        }
 
     fun isWon() = winningNumber >= 0
     fun sumOfRemaining() = rows.sumOf { it.filterNotNull().sum() }
