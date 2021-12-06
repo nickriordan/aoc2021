@@ -1,6 +1,7 @@
 import kotlin.math.absoluteValue
 
 data class Point(val x: Int, val y: Int)
+fun IntProgression.magnitude() = (this.first - this.last).absoluteValue
 
 class Line(pt1: Point, pt2: Point) {
     private val xRange = if (pt1.x < pt2.x) (pt1.x..pt2.x) else (pt1.x downTo pt2.x)
@@ -12,7 +13,7 @@ class Line(pt1: Point, pt2: Point) {
     fun points() = when {
         isVert() -> yRange.map { Point(xRange.first, it) }
         isHorz() -> xRange.map { Point(it, yRange.first) }
-        (xRange.first - xRange.last).absoluteValue != (yRange.first - yRange.last).absoluteValue -> throw Exception()
+        xRange.magnitude() != yRange.magnitude() -> throw Exception()
         else -> (xRange zip yRange).map { Point(it.first, it.second) }
     }.toSet()
 }
