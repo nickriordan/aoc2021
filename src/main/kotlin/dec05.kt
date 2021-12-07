@@ -1,8 +1,3 @@
-import kotlin.math.absoluteValue
-
-data class Point(val x: Int, val y: Int)
-fun IntProgression.magnitude() = (this.first - this.last).absoluteValue
-
 class Line(pt1: Point, pt2: Point) {
     private val xRange = if (pt1.x < pt2.x) (pt1.x..pt2.x) else (pt1.x downTo pt2.x)
     private val yRange = if (pt1.y < pt2.y) (pt1.y..pt2.y) else (pt1.y downTo pt2.y)

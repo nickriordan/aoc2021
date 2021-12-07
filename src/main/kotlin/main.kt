@@ -5,4 +5,5 @@ fun main() {
     println("december 4th: ${dec04part1()}, ${dec04part2()}")
     println("december 5th: ${dec05part1()}, ${dec05part2()}")
     println("december 6th: ${dec06part1()}, ${dec06part2()}")
+    println("december 7th: ${dec07part1()}, ${dec07part2()}")
 }
